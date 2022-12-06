@@ -1,26 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react';
 
-function getRandomString(length: number = 5) {
-  var result           = '';
-  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
-  var charactersLength = characters.length;
-  for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+const ErrorExample = () => {
+  let title = 'random title';
 
-function ErrorExample() {
-  const [title, setTitle] = useState('Random Title');
   const handleClick = () => {
-    setTitle(getRandomString(12));
-  }
+    title = 'hello people';
+    console.log(title);
+  };
   return (
     <React.Fragment>
       <h2>{title}</h2>
-      <button className="btn" onClick={handleClick}>Change Title</button>
+      <button type='button' className='btn' onClick={handleClick}>
+        change title
+      </button>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default ErrorExample
+export default ErrorExample;
