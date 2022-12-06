@@ -1,9 +1,9 @@
-import { MultipleReturns } from './tutorial';
+import { ShowHide } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <MultipleReturns />
+      <ShowHide />
     </div>
   )
 }
