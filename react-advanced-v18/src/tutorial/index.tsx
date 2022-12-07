@@ -12,7 +12,7 @@ export { default as MultipleReturns } from './3-conditional-rendering/1-multiple
 export { default as ShortCircuit } from './3-conditional-rendering/2-short-circuit';
 export { default as ShowHide } from './3-conditional-rendering/3-show-hide';
 
-export { default as ControlledInput } from './4-forms/1-controlled-inputs';
+export { default as ControlledInputs } from './4-forms/1-controlled-inputs';
 export { default as MultipleInputs } from './4-forms/2-multiple-inputs';
 
 export { default as UseRefBasics } from './5-useRef/1-useRef-basics';
