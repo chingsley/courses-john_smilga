@@ -1,9 +1,9 @@
-import { ShowHide } from './tutorial';
+import { MultipleInputs } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <ShowHide />
+      <MultipleInputs />
     </div>
   )
 }

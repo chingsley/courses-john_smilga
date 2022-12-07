@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // ternary operator
 
 const ShortCircuit = () => {
+  // eslint-disable-next-line
   const [text, setText] = useState('');
   const [isError, setIsError] = useState(false);
   // const firstValue = text || 'hello world';
