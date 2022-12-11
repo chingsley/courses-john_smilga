@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function Modal() {
+interface ModalProps {
+  closeModal: () => void;
+  modalContent: string;
+}
+
+const Modal: React.FC<ModalProps> = (props) => {
+  
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      props.closeModal();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  })
   return (
-    <div>Modal</div>
+    <div>
+      <p>{props.modalContent}</p>
+    </div>
   )
 }
 
