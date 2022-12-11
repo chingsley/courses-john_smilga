@@ -1,11 +1,11 @@
-import { UseRefBasics } from './tutorial';
+import { PropsDrilling } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <UseRefBasics />
+      <PropsDrilling />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

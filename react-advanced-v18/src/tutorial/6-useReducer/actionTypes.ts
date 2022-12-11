@@ -1,0 +1,6 @@
+export enum ActionType {
+  ADD_ITEM = 'ADD_ITEM',
+  REMOVE_ITEM = 'REMOVE_ITEM',
+  NO_VALUE = 'NO_VALUE',
+  CLOSE_MODAL = 'CLOSE_MODAL',
+}
