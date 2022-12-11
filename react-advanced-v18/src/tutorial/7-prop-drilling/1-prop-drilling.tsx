@@ -30,7 +30,7 @@ const List: React.FC<ListProps> = ({ people, removePerson }) => {
         return (
           <SinglePerson
             key={person.id}
-            person={person}
+            {...person}
             removePerson={removePerson}
           />
         );
@@ -40,11 +40,11 @@ const List: React.FC<ListProps> = ({ people, removePerson }) => {
 };
 
 interface SinglePersonProps {
-  person: Person;
+  id: Person["id"];
+  name: Person["name"];
   removePerson: (id: number) => void;
 }
-const SinglePerson: React.FC<SinglePersonProps> = ({ person, removePerson }) => {
-  const { id, name } = person;
+const SinglePerson: React.FC<SinglePersonProps> = ({ id, name, removePerson }) => {
   return (
     <div className="item">
       <h4>{name}</h4>
