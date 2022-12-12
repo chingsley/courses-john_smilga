@@ -1,9 +1,9 @@
-import { ContextApi } from './tutorial';
+import { UseFetchHook } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <ContextApi />
+      <UseFetchHook />
     </div>
   );
 }
