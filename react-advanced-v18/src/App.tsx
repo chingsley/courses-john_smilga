@@ -1,9 +1,9 @@
-import { PropsDrilling } from './tutorial';
+import { ContextApi } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <PropsDrilling />
+      <ContextApi />
     </div>
   );
 }
