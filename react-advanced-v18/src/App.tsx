@@ -1,9 +1,9 @@
-import { UseFetchHook } from './tutorial';
+import { PropType } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <UseFetchHook />
+      <PropType />
     </div>
   );
 }

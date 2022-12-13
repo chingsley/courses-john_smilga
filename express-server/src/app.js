@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -6,6 +7,8 @@ import { NotFoundError } from './errors/notFoundError.js';
 import { indexTicketRouter } from './routes/index.js';
 
 const app = express();
+
+app.use(cors());
 app.set('trust proxy', true);
 app.use(express.json());
 
