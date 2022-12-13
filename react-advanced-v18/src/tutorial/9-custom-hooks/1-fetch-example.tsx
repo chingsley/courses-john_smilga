@@ -2,7 +2,8 @@
 import { useFetch } from './2-useFetch';
 
 // const url = 'https://course-api.com/javascript-store-products';
-const url = 'https://course-api.netlify.app/api/javascript-store-products';
+// const url = 'https://course-api.netlify.app/api/javascript-store-products';
+const url = 'http://localhost:4500/api/products';
 
 function FetchExample() {
   const { loading, products } = useFetch(url);
