@@ -1,9 +1,9 @@
-import { PropType } from './tutorial';
+import { UseMemo } from './tutorial';
 
 function App() {
   return (
     <div className="container">
-      <PropType />
+      <UseMemo />
     </div>
   );
 }

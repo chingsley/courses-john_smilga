@@ -7,10 +7,14 @@ export interface IProduct {
   id: string;
 }
 
+export interface IUseFetchData {
+  loading: boolean;
+  products: any[];
+}
 
-export function useFetch(url: string) {
+export function useFetch(url: string): IUseFetchData {
   const [loading, setLoading] = useState<boolean>(false);
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState([]);
   const getProducts = useCallback(async () => {
     setLoading(true);
     const resp = await fetch(url);
