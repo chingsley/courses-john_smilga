@@ -8,11 +8,11 @@ router.get('/api/products', async (req, res) => {
   res.status(200).send(products);
 });
 
-router.get('/api/prop-types-example', async (rea, res) => {
+router.get('/api/prop-types-example', async (req, res) => {
   res.status(200).send(propTypes);
 });
 
-router.get('/api/javascript-store-products', async (rea, res) => {
+router.get('/api/javascript-store-products', async (req, res) => {
   res.status(200).send(storeProducts);
 });
 
