@@ -6,7 +6,6 @@ const allCategories = ['all', ...Array.from(new Set(items.map(item => item.categ
 
 function App() {
   const [menuItems, setMenuItems] = useState<IMenu[]>(items);
-  const [categories, setCategories] = useState(allCategories);
 
   const filterItems = (category: string) => {
     if(category === 'all') {
@@ -24,7 +23,7 @@ function App() {
           <h2>Our Menu</h2>
           <div className="underline"></div>
         </div>
-        <Categories categories={categories} filterItems={filterItems} />
+        <Categories categories={allCategories} filterItems={filterItems} />
         <Menu items={menuItems}/>
       </section>
     </main>
