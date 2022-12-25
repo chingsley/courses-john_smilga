@@ -1,6 +1,12 @@
 import express from 'express';
 
-import { products, propTypes, storeProducts, tours } from '../../data/index.js';
+import {
+  products,
+  propTypes,
+  storeProducts,
+  tabs,
+  tours
+} from '../../data/index.js';
 
 const router = express.Router();
 
@@ -19,5 +25,10 @@ router.get('/api/javascript-store-products', async (req, res) => {
 router.get('/api/tours', async (rea, res) => {
   res.status(200).send(tours);
 });
+
+router.get('/api/react-tabs-project', async (rea, res) => {
+  res.status(200).send(tabs);
+});
+
 
 export { router as indexTicketRouter };
