@@ -1,6 +1,7 @@
 import express from 'express';
 
 import {
+  carts,
   products,
   propTypes,
   storeProducts,
@@ -28,6 +29,10 @@ router.get('/api/tours', async (rea, res) => {
 
 router.get('/api/react-tabs-project', async (rea, res) => {
   res.status(200).send(tabs);
+});
+
+router.get('/api/react-useReducer-cart-project', async (req, res) => {
+  res.status(200).send(carts);
 });
 
 
