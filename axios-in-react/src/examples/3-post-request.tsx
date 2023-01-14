@@ -1,5 +1,14 @@
 import { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+
+/**
+ * To send data to the server use:
+ * axios.post(url, { data })
+ * 
+ * To send options such as auth header user:
+ * axios.post(url, { data }, {})
+ * the last object will contain the auth headers
+ */
 
 const url = 'https://course-api.com/axios-tutorial-post';
 
@@ -45,3 +54,5 @@ const PostRequest = () => {
 }
 
 export default PostRequest;
+
+axios.defaults.headers.common['Authorization'] = 'alkdlakjld';
