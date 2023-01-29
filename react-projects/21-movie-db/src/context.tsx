@@ -8,7 +8,7 @@ interface IError {
 interface IAppContext {
   isLoading: boolean;
   error: IError;
-  movies: IMovie[] | null;
+  movies: IMovie | IMovie[] | null;
   query: string;
   setQuery: (queryParam: string) => void;
 }

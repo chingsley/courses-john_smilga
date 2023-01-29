@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGlobalContext } from './context';
 import { Link } from 'react-router-dom';
+import { IMovie } from './useFetch';
 
 const NO_PIC_AVAILABLE =
   'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png';
@@ -15,7 +16,7 @@ const Movies = () => {
 
   return (
     <section className='movies'>
-      {movies?.map((movie) => {
+      {(movies as IMovie[])?.map((movie) => {
         const { imdbID: id, Poster: poster, Title: title, Year: year } = movie;
 
         return (
