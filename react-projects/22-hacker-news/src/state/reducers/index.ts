@@ -31,7 +31,7 @@ const reducer = (state: IState, action: Action): IState => {
       if (action.payload === EnumPageTransition.Inc) {
         let nextPage = state.page + 1;
         if (nextPage > state.nbPages - 1) nextPage = 0;
-        return { ...state, page: 0 };
+        return { ...state, page: nextPage };
       } else {
         let prevPage = state.page - 1;
         if (prevPage < 0) prevPage = state.nbPages - 1;
