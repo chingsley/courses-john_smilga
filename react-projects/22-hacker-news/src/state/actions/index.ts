@@ -2,6 +2,11 @@ import { ActionType } from "../action-types";
 
 export interface IStory {
   objectID: string;
+  title: string;
+  num_comments: string;
+  url: string;
+  points: string;
+  author: string;
 }
 
 export enum EnumPageTransition {

@@ -58,8 +58,16 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     dispatch({ type: ActionType.HANDLE_PAGE, payload: direction });
   };
 
+  let timer: any;
   useEffect(() => {
-    fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      fetchStories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [state.query, state.page]);
 
   return (
