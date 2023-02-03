@@ -30,8 +30,12 @@ interface IAppContext {
   checkAnswer: (value: boolean) => void;
   closeModal: () => void;
   quiz: IQuiz;
-  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
+  ) => void;
 }
 
 const API_ENDPOINT = 'https://opentdb.com/api.php?';
@@ -109,13 +113,17 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setIsModalOpen(false);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const name = e.target.name;
     const value = e.target.value;
     setQuiz({ ...quiz, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
+  ) => {
     e.preventDefault();
     const { amount, category, difficulty } = quiz;
 
