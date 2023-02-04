@@ -1,0 +1,1 @@
+export const MIN_QUESTIONS_COUNT = 1;

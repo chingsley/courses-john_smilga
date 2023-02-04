@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import useVisualMode, { ModeEnum } from './hooks/useVisualMode';
 
+import { MIN_QUESTIONS_COUNT } from './constants';
 interface IQuestion {
   question: string;
   incorrect_answers: string[];
@@ -19,12 +21,12 @@ interface IQuiz {
 }
 
 interface IAppContext {
-  waiting: boolean;
-  loading: boolean;
+  mode: ModeEnum;
+  transition: (mode: ModeEnum) => void;
   questions: IQuestion[];
   index: number;
   score: number;
-  error: boolean;
+  error: string | null;
   isModalOpen: boolean;
   nextQuestion: () => void;
   checkAnswer: (value: boolean) => void;
@@ -40,7 +42,6 @@ interface IAppContext {
 
 const API_ENDPOINT = 'https://opentdb.com/api.php?';
 
-// const url = '';
 // const tempUrl =
 //   'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 
@@ -51,36 +52,44 @@ interface AppProviderProps {
 }
 
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [waiting, setWaiting] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const { mode, transition } = useVisualMode();
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [quiz, setQuiz] = useState<IQuiz>({
-    amount: 0,
+    amount: MIN_QUESTIONS_COUNT,
     category: CategoryEnum.Sports,
     difficulty: 'easy',
   });
 
   const fetchQuestions = async (url: string) => {
-    setLoading(true);
-    setWaiting(false);
-    const response = await axios(url).catch((err) => console.log(err));
-    if (response) {
-      const data = response.data.results;
-      if (data.length > 0) {
-        setQuestions(data);
-        setLoading(false);
-        setWaiting(false);
-        setError(false);
-      } else {
-        setWaiting(true);
-        setError(true);
+    transition(ModeEnum.LOADING);
+    try {
+      const response = await axios(url);
+      console.log('response = ', response);
+      if (!response) {
+        transition(ModeEnum.SETUP);
+        setError(
+          'No response, please select different options, or try again later'
+        );
+        return;
       }
-    } else {
-      setWaiting(true);
+      const data = response.data.results;
+      if (data.length === 0) {
+        transition(ModeEnum.SETUP);
+        setError(
+          'No questions generated for the Selected Options, please choose different options'
+        );
+        return;
+      }
+      setQuestions(data);
+      transition(ModeEnum.QUESTION);
+    } catch (error) {
+      console.log('error = ', error);
+      transition(ModeEnum.SETUP);
+      setError('Internal Error. Please try again later');
     }
   };
 
@@ -108,7 +117,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   };
 
   const closeModal = () => {
-    setWaiting(true);
+    transition(ModeEnum.SETUP);
     setScore(0);
     setIsModalOpen(false);
   };
@@ -135,8 +144,8 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        waiting,
-        loading,
+        mode,
+        transition,
         questions,
         index,
         score,

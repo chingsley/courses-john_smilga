@@ -4,22 +4,16 @@ import { useGlobalContext } from './context';
 import SetupForm from './SetupForm';
 import Loading from './Loading';
 import Modal from './Modal';
+import { ModeEnum } from './hooks/useVisualMode';
 
 function App() {
-  const {
-    waiting,
-    loading,
-    questions,
-    index,
-    score,
-    nextQuestion,
-    checkAnswer,
-  } = useGlobalContext()!;
+  const { mode, questions, index, score, nextQuestion, checkAnswer } =
+    useGlobalContext()!;
 
-  if (waiting) {
+  if (mode === ModeEnum.SETUP) {
     return <SetupForm />;
   }
-  if (loading) {
+  if (mode === ModeEnum.LOADING) {
     return <Loading />;
   }
 

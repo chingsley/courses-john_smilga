@@ -277,7 +277,6 @@ Form
 
 .error {
   color: var(--clr-red-dark);
-  text-transform: capitalize;
 }
 
 .submit-btn {
