@@ -360,7 +360,6 @@ Loading
 .breakdown {
   max-height: 20rem;
   overflow-y: scroll;
-  /* border: 1px solid red; */
   padding: 1rem;
   scroll-behavior: initial;
 }
