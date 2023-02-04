@@ -1,6 +1,6 @@
 import { useState, useReducer, FormEvent } from 'react';
 import { ActionType } from './actionTypes';
-import  Modal from './Modal'
+import Modal from './Modal';
 import { reducer, initialState } from './reducer';
 function Index() {
   const [name, setName] = useState('');
@@ -9,7 +9,7 @@ function Index() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(!name) {
+    if (!name) {
       dispatch({ type: ActionType.NO_VALUE });
       return;
     }
@@ -20,23 +20,26 @@ function Index() {
 
   const removeItem = (id: string) => {
     dispatch({ type: ActionType.REMOVE_ITEM, payload: id });
-  }
+  };
 
-  const closeModal = () => {
+  const closeResultModal = () => {
     dispatch({ type: ActionType.CLOSE_MODAL });
-  }
+  };
 
   return (
     <>
-      {state.isModalOpen && (
-        <Modal closeModal={closeModal} modalContent={state.modalContent} />
+      {state.isResultModalOpen && (
+        <Modal
+          closeResultModal={closeResultModal}
+          modalContent={state.modalContent}
+        />
       )}
       <form onSubmit={handleSubmit} className='form'>
         <div>
           <input
             type='text'
             value={name}
-            name='name' 
+            name='name'
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -44,11 +47,11 @@ function Index() {
       </form>
       {state.people.map((person) => {
         return (
-          <div key={person.id} className="item">
+          <div key={person.id} className='item'>
             <h4>{person.name}</h4>
             <button onClick={() => removeItem(person.id)}>Remove</button>
           </div>
-        )
+        );
       })}
     </>
   );

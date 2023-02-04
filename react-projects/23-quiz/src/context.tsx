@@ -27,10 +27,10 @@ interface IAppContext {
   index: number;
   score: number;
   error: string | null;
-  isModalOpen: boolean;
+  isResultModalOpen: boolean;
   nextQuestion: () => void;
-  checkAnswer: (value: boolean) => void;
-  closeModal: () => void;
+  checkAnswer: (userAnswer: IUserAnswer, correctAnswer: string) => void;
+  closeResultModal: () => void;
   quiz: IQuiz;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -38,6 +38,7 @@ interface IAppContext {
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => void;
+  userAnswers: IUserAnswer[];
 }
 
 const API_ENDPOINT = 'https://opentdb.com/api.php?';
@@ -51,18 +52,24 @@ interface AppProviderProps {
   children?: React.ReactNode;
 }
 
+interface IUserAnswer {
+  questionIndex: number;
+  answer: string;
+}
+
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const { mode, transition } = useVisualMode();
   const [questions, setQuestions] = useState<IQuestion[]>([]);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [quiz, setQuiz] = useState<IQuiz>({
     amount: MIN_QUESTIONS_COUNT,
     category: CategoryEnum.Sports,
     difficulty: 'easy',
   });
+  const [userAnswers, setUserAnswers] = useState<IUserAnswer[]>([]);
 
   const fetchQuestions = async (url: string) => {
     transition(ModeEnum.LOADING);
@@ -97,7 +104,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setIndex((prevIndex) => {
       const index = prevIndex + 1;
       if (index > questions.length - 1) {
-        openModal();
+        showResult();
         return 0;
       } else {
         return index;
@@ -105,21 +112,23 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     });
   };
 
-  const checkAnswer = (value: boolean) => {
-    if (value) {
+  const checkAnswer = (userAnswer: IUserAnswer, correctAnswer: string) => {
+    setUserAnswers((prevAnswers) => [...prevAnswers, { ...userAnswer }]);
+    if (userAnswer.answer === correctAnswer) {
       setScore((prevScore) => prevScore + 1);
     }
     nextQuestion();
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const showResult = () => {
+    setIsResultModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeResultModal = () => {
     transition(ModeEnum.SETUP);
     setScore(0);
-    setIsModalOpen(false);
+    setUserAnswers([]);
+    setIsResultModalOpen(false);
   };
 
   const handleChange = (
@@ -150,13 +159,14 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         index,
         score,
         error,
-        isModalOpen,
+        isResultModalOpen,
         nextQuestion,
         checkAnswer,
-        closeModal,
+        closeResultModal,
         quiz,
         handleChange,
         handleSubmit,
+        userAnswers,
       }}
     >
       {children}

@@ -5,13 +5,13 @@ interface Person { id: string; name: string; }
 
 interface State {
   people: Person[],
-  isModalOpen: boolean;
+  isResultModalOpen: boolean;
   modalContent: string;
 }
 
 export const initialState = {
   people: [],
-  isModalOpen: false,
+  isResultModalOpen: false,
   modalContent: '',
 };
 
@@ -21,7 +21,7 @@ export function reducer(state: State, action: Action) {
       return {
         ...state,
         people: [...state.people, action.payload],
-        isModalOpen: true,
+        isResultModalOpen: true,
         modalContent: `${action.payload.name} added`
       };
     case ActionType.REMOVE_ITEM:
@@ -31,19 +31,19 @@ export function reducer(state: State, action: Action) {
       return {
         ...state,
         people: state.people.filter(({ id }) => id !== action.payload),
-        isModalOpen: true,
+        isResultModalOpen: true,
         modalContent: `${userToRemove.name} removed`
       };
     case ActionType.NO_VALUE:
       return {
         ...state,
-        isModalOpen: true,
+        isResultModalOpen: true,
         modalContent: 'no value entered'
       };
     case ActionType.CLOSE_MODAL:
       return {
         ...state,
-        isModalOpen: false,
+        isResultModalOpen: false,
         modalContent: '',
       };
     default:

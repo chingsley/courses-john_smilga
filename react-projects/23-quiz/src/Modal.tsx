@@ -1,13 +1,22 @@
-import React from 'react';
 import { useGlobalContext } from './context';
+import UserAnswerList from './UserAnswerList';
 
 const Modal = () => {
-  const { isModalOpen, closeModal, score, questions } = useGlobalContext()!;
+  const { isResultModalOpen, closeResultModal, score, questions, userAnswers } =
+    useGlobalContext()!;
 
+  const userAns = userAnswers.map(({ answer, questionIndex }) => {
+    return {
+      question: questions[questionIndex].question,
+      answer,
+      correctAnswer: questions[questionIndex].correct_answer,
+    };
+  });
+  console.log('userAns: ', userAns);
   return (
     <div
       className={`${
-        isModalOpen ? 'modal-container isOpen' : 'modal-container'
+        isResultModalOpen ? 'modal-container isOpen' : 'modal-container'
       }`}
     >
       <div className='modal-content'>
@@ -16,7 +25,8 @@ const Modal = () => {
           You answered {((score / questions.length) * 100).toFixed(0)}% of
           questions correctly
         </p>
-        <button className='close-btn' onClick={closeModal}>
+        <UserAnswerList userAnswers={userAns} />
+        <button className='close-btn' onClick={closeResultModal}>
           play again
         </button>
       </div>
