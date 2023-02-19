@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthWrapper, Dashboard, Error, Login, PrivateRoute } from './pages';
+import { AuthWrapper, Dashboard, NotFound, Login, PrivateRoute } from './pages';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             }
           />
           <Route path='login' element={<Login />} />
-          <Route path='*' element={<Error />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </AuthWrapper>
