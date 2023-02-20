@@ -13611,3 +13611,5 @@ const mockRepos: IRepo[] = [
     default_branch: "master",
   },
 ];
+
+export default mockRepos;
