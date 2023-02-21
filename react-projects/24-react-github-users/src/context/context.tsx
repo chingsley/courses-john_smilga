@@ -61,11 +61,12 @@ const GithubProvider: React.FC<AppProviderProps> = ({ children }) => {
       .get<IGithubUser>(`${rootUrl}/users/${username}`)
       .catch((error) => {
         setError({ show: true, msg: error.message });
-        console.log(error);
+        console.log('error 1: ', error);
       });
 
     if (!response) {
       showError(`No user matches the username: ${username}`);
+      setIsLoading(false);
       return;
     }
 
@@ -88,7 +89,7 @@ const GithubProvider: React.FC<AppProviderProps> = ({ children }) => {
       })
       .catch((err) => {
         showError(err.message);
-        console.log(err);
+        console.log('error 2: ', err);
       });
 
     checkRequests();
