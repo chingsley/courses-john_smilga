@@ -63,7 +63,7 @@ export interface IRepo {
   svn_url?: string | null;
   homepage?: string | null;
   size?: number;
-  stargazers_count?: number | null;
+  stargazers_count: number;
   watchers_count?: number | null;
   language?: string | null;
   has_issues: boolean;
