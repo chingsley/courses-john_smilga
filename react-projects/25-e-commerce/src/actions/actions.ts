@@ -1,9 +1,9 @@
-import { ICartItem } from './../types/index';
+import { ICartItem, CartItemCountToggleDirection } from './../types/index';
 import ActionTypes from './actionTypes';
 
 export interface AddToCart {
   type: ActionTypes.ADD_TO_CART;
-  payload: ICartItem;
+  payload: Omit<ICartItem, "name" | "image" | "price" | "totalStockCount">;
 }
 
 export interface RemoveItem {
@@ -11,11 +11,11 @@ export interface RemoveItem {
   payload: ICartItem["id"];
 }
 
-export interface ToggleAmount {
-  type: ActionTypes.TOGGLE_CART_ITEM_AMOUNT;
+export interface ToggleCount {
+  type: ActionTypes.TOGGLE_CART_ITEM_COUNT;
   payload: {
     id: string;
-    value: string;
+    direction: CartItemCountToggleDirection;
   };
 }
 
@@ -30,7 +30,7 @@ export interface CountCartTotals {
 export type Action =
   | AddToCart
   | RemoveItem
-  | ToggleAmount
+  | ToggleCount
   | ClearCart
   | CountCartTotals;
 

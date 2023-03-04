@@ -8,12 +8,12 @@ export interface IProduct {
 export interface ICartItem {
   id: string;
   color: string;
-  amount: number;
+  count: number;
   product: IProduct;
   name: string,
-  imgage: string,
+  image: string,
   price: number,
-  max: number,
+  totalStockCount: number,
 }
 
 export interface IState {
@@ -21,4 +21,9 @@ export interface IState {
   total_items: number;
   total_amount: number;
   shipping_fee: number;
+}
+
+export enum CartItemCountToggleDirection {
+  Inc = 'INCREMEMNT',
+  Dec = 'DECREMENT'
 }
