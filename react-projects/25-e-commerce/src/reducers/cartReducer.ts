@@ -1,11 +1,11 @@
-import { IState } from "../types";
+import { CartItemCountToggleDirection, IState } from "../types";
 import { Action } from "../actions/actions";
 import ActionTypes from "../actions/actionTypes";
 
 const cartReducer = (state: IState, action: Action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART: {
-      const { id, color, amount, product } = action.payload;
+      const { id, color, count, product } = action.payload;
       const itemID = id + color;
 
       const cartItem = state.cart.find((item) => item.id = itemID);
@@ -16,7 +16,7 @@ const cartReducer = (state: IState, action: Action) => {
             if (item.id !== itemID) return item;
             return {
               ...item,
-              amount: Math.min(item.max, item.amount + amount)
+              count: Math.min(item.totalStockCount, item.count + count)
             };
           })
         };
@@ -25,8 +25,8 @@ const cartReducer = (state: IState, action: Action) => {
           id: itemID,
           name: product.name,
           color,
-          amount,
-          imgage: product.images[0].url,
+          count,
+          image: product.images[0].url,
           price: product.price,
           max: product.stock,
         };
@@ -39,21 +39,21 @@ const cartReducer = (state: IState, action: Action) => {
         cart: state.cart.filter(item => item.id !== action.payload)
       };
     }
-    case ActionTypes.TOGGLE_CART_ITEM_AMOUNT: {
-      const { id, value } = action.payload;
+    case ActionTypes.TOGGLE_CART_ITEM_COUNT: {
+      const { id, direction } = action.payload;
       return {
         ...state,
         cart: state.cart.map((item) => {
           if (item.id !== id) return item;
-          if (value === 'inc') {
+          if (direction === CartItemCountToggleDirection.Inc) {
             return {
               ...item,
-              amount: Math.max(item.amount + 1, item.max)
+              count: Math.max(item.count + 1, item.totalStockCount)
             };
           } else {
             return {
               ...item,
-              amount: Math.min(item.amount - 1, 1)
+              count: Math.min(item.count - 1, 1)
             };
           }
         })
@@ -65,9 +65,9 @@ const cartReducer = (state: IState, action: Action) => {
     case ActionTypes.COUNT_CART_TOTALS: {
       const { total_items, total_amount } = state.cart.reduce(
         (total, cartItem) => {
-          const { amount, price } = cartItem;
-          total.total_items += amount;
-          total.total_amount += price * amount;
+          const { count, price } = cartItem;
+          total.total_items += count;
+          total.total_amount += price * count;
           return total;
         },
         { total_items: 0, total_amount: 0 });
