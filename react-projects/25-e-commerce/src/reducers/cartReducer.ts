@@ -1,8 +1,8 @@
-import { CartItemCountToggleDirection, IState } from "../types";
-import { Action } from "../actions/actions";
+import { CartItemCountToggleDirection, ICartState } from "../types/carts";
+import { CartAction } from "../actions/cartActions";
 import ActionTypes from "../actions/actionTypes";
 
-const cartReducer = (state: IState, action: Action) => {
+const cartReducer = (state: ICartState, action: CartAction) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART: {
       const { id, color, count, product } = action.payload;
@@ -30,7 +30,7 @@ const cartReducer = (state: IState, action: Action) => {
           price: product.price,
           max: product.stock,
         };
-        return { ...state, cart: [...state.cart, newItem] } as IState;
+        return { ...state, cart: [...state.cart, newItem] } as ICartState;
       }
     }
     case ActionTypes.REMOVE_CART_ITEM: {
@@ -75,7 +75,7 @@ const cartReducer = (state: IState, action: Action) => {
       return { ...state, total_items, total_amount };
     }
     default: {
-      console.error(`No matching "${(action as Action).type}" - action type`);
+      console.error(`No matching "${(action as CartAction).type}" - action type`);
       return state;
     }
   }

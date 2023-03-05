@@ -1,4 +1,4 @@
-import { ICartItem, CartItemCountToggleDirection } from './../types/index';
+import { ICartItem, CartItemCountToggleDirection } from '../types/carts';
 import ActionTypes from './actionTypes';
 
 export interface AddToCart {
@@ -27,7 +27,7 @@ export interface CountCartTotals {
   type: ActionTypes.COUNT_CART_TOTALS;
 }
 
-export type Action =
+export type CartAction =
   | AddToCart
   | RemoveItem
   | ToggleCount

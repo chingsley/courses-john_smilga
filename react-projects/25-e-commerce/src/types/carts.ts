@@ -16,7 +16,7 @@ export interface ICartItem {
   totalStockCount: number,
 }
 
-export interface IState {
+export interface ICartState {
   cart: ICartItem[];
   total_items: number;
   total_amount: number;

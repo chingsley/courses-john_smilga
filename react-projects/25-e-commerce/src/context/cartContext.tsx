@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
-  IState,
+  ICartState,
   ICartItem,
   IProduct,
   CartItemCountToggleDirection,
@@ -31,7 +31,7 @@ interface ICartContext {
   clearCart: () => void;
 }
 
-const initialState: IState = {
+const initialState: ICartState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
