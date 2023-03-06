@@ -35,7 +35,7 @@ export interface IProductsState {
   featuredProducts: IProduct[];
   singleProductLoading: boolean;
   singleProductError: boolean;
-  singleProduct: IProductDetail;
+  singleProduct: IProductDetail | {};
 }
 
 interface IProductImage {
