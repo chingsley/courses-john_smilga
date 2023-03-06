@@ -4,7 +4,7 @@ import {
   ICartItem,
   IProduct,
   CartItemCountToggleDirection,
-} from '../types';
+} from '../types/carts';
 import cartReducer from '../reducers/cartReducer';
 import ActionTypes from '../actions/actionTypes';
 
@@ -15,11 +15,7 @@ const getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('cart')!);
 };
 
-interface ICartContext {
-  cart: ICartItem[];
-  total_items: number;
-  total_amount: number;
-  shipping_fee: number;
+interface ICartContext extends ICartState {
   addToCart: (
     id: string,
     color: string,
