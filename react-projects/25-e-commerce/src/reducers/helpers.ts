@@ -11,7 +11,7 @@ export const sortProducts = (sortType: SortTypes, [...products]: IProduct[]) => 
     case SortTypes.NameAsc: {
       return products.sort((a, b) => a.name.localeCompare(b.name));
     }
-    case SortTypes.SortByNameDesc: {
+    case SortTypes.NameDesc: {
       return products.sort((a, b) => b.name.localeCompare(a.name));
     }
     default: {
