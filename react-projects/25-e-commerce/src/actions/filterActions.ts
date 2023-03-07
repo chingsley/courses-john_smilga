@@ -1,3 +1,4 @@
+import { SortTypes, ViewTypes } from './../types/filters';
 import { IProduct, IProductDetail } from '../types/products';
 import ActionTypes from './actionTypes';
 
@@ -11,15 +12,13 @@ interface filterProducts {
 interface sortProducts {
   type: ActionTypes.SORT_PRODUCTS,
 }
-interface setGridView {
-  type: ActionTypes.SET_GRIDVIEW,
-}
-interface setListView {
-  type: ActionTypes.SET_LISTVIEW,
+interface setViewType {
+  type: ActionTypes.SET_VIEW_TYPE,
+  payload: ViewTypes;
 }
 interface updateSort {
   type: ActionTypes.UPDATE_SORT,
-  payload: string;
+  payload: SortTypes;
 }
 interface updateFilter {
   type: ActionTypes.UPDATE_FILTERS,
@@ -36,8 +35,7 @@ export type FiltersAction =
   | loadProducts
   | filterProducts
   | sortProducts
-  | setGridView
-  | setListView
+  | setViewType
   | updateSort
   | updateFilter
   | clearFilters;

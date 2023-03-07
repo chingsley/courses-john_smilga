@@ -11,6 +11,7 @@ export interface IFiltersState {
     category: string;
     color: string;
     maxPrice: number;
+    minPrice: number;
     price: number;
     shipping: boolean;
   };
@@ -22,8 +23,8 @@ export enum ViewTypes {
 }
 
 export enum SortTypes {
-  ByPriceAsc = 'ByPriceAsc',
-  ByPriceDesc = 'ByPriceDesc',
-  ByNameAsc = 'ByNameAsc',
-  SortByNameDesc = 'ByNameDesc'
+  PriceAsc = 'PriceAsc',
+  PriceDesc = 'PriceDesc',
+  NameAsc = 'NameAsc',
+  NameDesc = 'NameDesc'
 }
