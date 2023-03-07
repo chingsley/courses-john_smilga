@@ -47,7 +47,7 @@ const productsReducer = (state: IProductsState, action: ProductAction) => {
       };
     }
     default: {
-      console.log(`No Matching "${(action as ProductAction).type}" - action type`);
+      console.error(`No Matching "${(action as ProductAction).type}" - action type`);
       return state;
     }
   }
