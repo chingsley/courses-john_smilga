@@ -6,7 +6,7 @@ import { products_url } from '../utils/constants';
 import ActionTypes from '../actions/actionTypes';
 import { IProductsState } from '../types/products';
 
-const initialState: IProductsState = {
+export const initialState: IProductsState = {
   isSidebarOpen: false,
   productsLoading: false,
   products_error: false,

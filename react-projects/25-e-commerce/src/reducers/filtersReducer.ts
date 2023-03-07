@@ -1,9 +1,9 @@
 import { filterProducts, sortProducts } from './helpers';
-import { IFiltersState, ViewTypes } from './../types/filters';
+import { IFiltersState } from './../types/filters';
 import ActionTypes from "../actions/actionTypes";
 import { FiltersAction } from '../actions/filterActions';
 
-const productsReducer = (state: IFiltersState, action: FiltersAction) => {
+const filtersReducer = (state: IFiltersState, action: FiltersAction) => {
   switch (action.type) {
     case ActionTypes.LOAD_PRODUCTS: {
       const prices = action.payload.map(product => product.price);
@@ -15,11 +15,8 @@ const productsReducer = (state: IFiltersState, action: FiltersAction) => {
         filters: { ...state.filters, maxPrice, price: maxPrice }
       };
     }
-    case ActionTypes.SET_GRIDVIEW: {
-      return { ...state, viewType: ViewTypes.Grid };
-    }
-    case ActionTypes.SET_LISTVIEW: {
-      return { ...state, viewType: ViewTypes.List };
+    case ActionTypes.SET_VIEW_TYPE: {
+      return { ...state, viewType: action.payload };
     }
     case ActionTypes.UPDATE_SORT: {
       return { ...state, sort: action.payload };
@@ -65,4 +62,4 @@ const productsReducer = (state: IFiltersState, action: FiltersAction) => {
   }
 };
 
-export default productsReducer;
+export default filtersReducer;

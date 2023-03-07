@@ -2,13 +2,13 @@ import { IProduct } from '../types/products';
 import { SortTypes, IFiltersState } from './../types/filters';
 export const sortProducts = (sortType: SortTypes, [...products]: IProduct[]) => {
   switch (sortType) {
-    case SortTypes.ByPriceAsc: {
+    case SortTypes.PriceAsc: {
       return products.sort((a, b) => a.price - b.price);
     }
-    case SortTypes.ByPriceDesc: {
+    case SortTypes.PriceDesc: {
       return products.sort((a, b) => b.price - a.price);
     }
-    case SortTypes.ByNameAsc: {
+    case SortTypes.NameAsc: {
       return products.sort((a, b) => a.name.localeCompare(b.name));
     }
     case SortTypes.SortByNameDesc: {
