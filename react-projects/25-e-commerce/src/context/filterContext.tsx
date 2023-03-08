@@ -88,6 +88,6 @@ export const FiltersProvider = ({
   );
 };
 
-export const useFilterContext = () => {
+export const useFiltersContext = () => {
   return useContext(FilterContext);
 };

@@ -1,4 +1,4 @@
-import { IProductsState, IProduct } from './../types/products';
+import { IProductsState } from './../types/products';
 import ActionTypes from "../actions/actionTypes";
 import { ProductAction } from '../actions/productActions';
 

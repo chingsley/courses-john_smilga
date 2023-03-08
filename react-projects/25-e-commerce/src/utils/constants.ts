@@ -1,5 +1,3 @@
-import { GiCompass, GiDiamondHard, GiStabbedNote } from 'react-icons/gi';
-
 interface ILink {
   id: number;
   text: string;
