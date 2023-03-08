@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
   ICartState,
-  ICartItem,
   IProduct,
   CartItemCountToggleDirection,
 } from '../types/carts';

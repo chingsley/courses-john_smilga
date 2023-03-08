@@ -3,6 +3,8 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import { UserProvider } from './context/userContext';
 import { CartProvider } from './context/cartContext';
+import { ProductsProvider } from './context/productContext';
+import { FiltersProvider } from './context/filterContext';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container!);
@@ -16,9 +18,13 @@ root.render(
     }}
   >
     <UserProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <ProductsProvider>
+        <FiltersProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </FiltersProvider>
+      </ProductsProvider>
     </UserProvider>
   </Auth0Provider>
 );
