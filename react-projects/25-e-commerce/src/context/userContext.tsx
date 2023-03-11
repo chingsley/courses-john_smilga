@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, LogoutOptions } from '@auth0/auth0-react';
 import { User } from '@auth0/auth0-spa-js';
 
 interface IUserContext {
   loginWithRedirect: () => void;
-  logout: () => void;
+  logout: (options?: LogoutOptions | undefined) => void;
   currentUser: User | undefined;
   isLoading: boolean;
   error: Error | undefined;
