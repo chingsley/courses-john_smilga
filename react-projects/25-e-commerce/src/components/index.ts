@@ -24,3 +24,4 @@ export { default as Sidebar } from './Sidebar';
 export { default as Sort } from './Sort';
 export { default as Stars } from './Stars';
 export { default as StripeCheckout } from './StripeCheckout';
+export { default as Img } from './Img';
