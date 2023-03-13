@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 import {
   ICartState,
-  IProduct,
+  ICartItemProductInfo,
   CartItemCountToggleDirection,
 } from '../types/carts';
 import cartReducer from '../reducers/cartReducer';
@@ -19,7 +19,7 @@ interface ICartContext extends ICartState {
     id: string,
     color: string,
     count: number,
-    product: IProduct
+    product: ICartItemProductInfo
   ) => void;
   removeItem: (id: string) => void;
   toggleCount: (id: string, direction: CartItemCountToggleDirection) => void;
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     id: string,
     color: string,
     count: number,
-    product: IProduct
+    product: ICartItemProductInfo
   ) => {
     dispatch({
       type: ActionTypes.ADD_TO_CART,

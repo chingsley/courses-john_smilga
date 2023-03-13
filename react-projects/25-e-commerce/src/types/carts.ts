@@ -1,4 +1,4 @@
-export interface IProduct {
+export interface ICartItemProductInfo {
   name: string;
   images: [{ url: string; }];
   price: number;
@@ -9,7 +9,7 @@ export interface ICartItem {
   id: string;
   color: string;
   count: number;
-  product: IProduct;
+  product: ICartItemProductInfo;
   name: string,
   image: string,
   price: number,

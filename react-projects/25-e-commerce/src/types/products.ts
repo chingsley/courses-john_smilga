@@ -30,7 +30,7 @@ export interface IProductDetail {
 export interface IProductsState {
   isSidebarOpen: boolean;
   productsLoading: boolean;
-  products_error: boolean;
+  productsError: boolean;
   products: IProduct[];
   featuredProducts: IProduct[];
   singleProductLoading: boolean;
