@@ -9,7 +9,7 @@ import { IProductsState } from '../types/products';
 export const initialState: IProductsState = {
   isSidebarOpen: false,
   productsLoading: false,
-  products_error: false,
+  productsError: false,
   products: [],
   featuredProducts: [],
   singleProductLoading: false,
