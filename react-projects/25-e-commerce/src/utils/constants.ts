@@ -22,10 +22,10 @@ export const links: ILink[] = [
 ];
 
 interface IService {
-  id: Number;
-  icon: String;
-  title: String;
-  text: String;
+  id: number;
+  icon: string;
+  title: string;
+  text: string;
 }
 export const services: IService[] = [
   {
