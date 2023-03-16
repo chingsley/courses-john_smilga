@@ -4,12 +4,13 @@ import filtersReducer from '../reducers/filtersReducer';
 import ActionTypes from '../actions/actionTypes';
 import { useProductsContext } from './productContext';
 import { IFiltersState, SortTypes, ViewTypes } from '../types/filters';
+import businessConfig from '../config/business.config';
 
 const initialState: IFiltersState = {
   filteredProducts: [],
   allProducts: [],
-  viewType: ViewTypes.Grid,
-  sort: SortTypes.PriceAsc,
+  viewType: businessConfig.defaultViewType,
+  sort: businessConfig.defaultSortType,
   filters: {
     text: '',
     company: 'all',
