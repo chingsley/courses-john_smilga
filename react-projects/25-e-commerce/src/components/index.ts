@@ -1,6 +1,6 @@
 export { default as AddToCart } from './AddToCart';
 export { default as AmountButtons } from './AmountButtons';
-export { default as CarContent } from './CarContent';
+export { default as CartContent } from './CartContent';
 export { default as CartButtons } from './CartButtons';
 export { default as CartColumns } from './CartColumns';
 export { default as CartItem } from './CartItem';
