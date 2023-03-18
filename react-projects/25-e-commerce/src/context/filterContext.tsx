@@ -26,7 +26,8 @@ const initialState: IFiltersState = {
 interface IFiltersContext extends IFiltersState {
   setViewType: (viewType: ViewTypes) => void;
   updateSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  updateFilters: (e: Event) => void;
+  // updateFilters: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  updateFilters: (name: string, value: string | number | boolean) => void;
   clearFilters: () => void;
 }
 
@@ -56,20 +57,27 @@ export const FiltersProvider = ({
     const value = e.target.value as SortTypes;
     dispatch({ type: ActionTypes.UPDATE_SORT, payload: value });
   };
-  const updateFilters = (e: any) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    const dict: { [key: string]: any } = {
-      category: e.target.textContent,
-      color: e.target.dataset.color,
-      price: Number(value),
-      shipping: e.target.checked,
-    };
-    if (Object.keys(dict).includes(name)) {
-      value = dict[name];
-    }
+
+  // const updateFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   let name = (e.target as HTMLInputElement).name;
+  //   let value = (e.target as HTMLInputElement).value;
+  //   const dict: { [key: string]: any; } = {
+  //     category: (e.target as HTMLInputElement).textContent,
+  //     color: (e.target as HTMLInputElement).dataset.color,
+  //     price: Number(value),
+  //     shipping: (e.target as HTMLInputElement).checked,
+  //   };
+  //   if (Object.keys(dict).includes(name)) {
+  //     value = dict[name];
+  //   }
+  //   dispatch({ type: ActionTypes.UPDATE_FILTERS, payload: { name, value } });
+  // };
+
+  const updateFilters = (name: string, value: string | number | boolean) => {
     dispatch({ type: ActionTypes.UPDATE_FILTERS, payload: { name, value } });
   };
+
+
   const clearFilters = () => {
     dispatch({ type: ActionTypes.CLEAR_FILTERS });
   };

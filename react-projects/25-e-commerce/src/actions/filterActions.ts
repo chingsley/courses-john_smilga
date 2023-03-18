@@ -24,7 +24,7 @@ interface updateFilter {
   type: ActionTypes.UPDATE_FILTERS,
   payload: {
     name: string;
-    value: string;
+    value: string | number | boolean;
   };
 }
 interface clearFilters {

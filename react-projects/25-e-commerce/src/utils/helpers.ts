@@ -1,3 +1,5 @@
+import { IProduct } from './../types/products';
+
 export const formatPrice = (number: number) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -5,8 +7,10 @@ export const formatPrice = (number: number) => {
   }).format(number / 100);
 };
 
-export const getUniqueValues = (data: { [key: string]: string; }[], type: string) => {
-  let unique = data.map((item) => item[type]);
+
+export const getUniqueValues = (data: IProduct[], type: string) => {
+  // let unique = data.map((item) => item[type as keyof typeof item]); // or
+  let unique = data.map((item) => item[type as keyof IProduct]);
   if (type === 'colors') {
     unique = unique.flat();
   }
