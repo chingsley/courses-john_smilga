@@ -51,6 +51,25 @@ const Filters = () => {
               placeholder="search"
               onChange={searchByText} className="search-input" />
           </div>
+          {/**filter by cateory */}
+          <div className="form-control">
+            <h5>category</h5>
+            <div>
+              {categories.map((c, index) => (
+                <button
+                  key={index}
+                  onClick={filterByCategory}
+                  type="button"
+                  name="cateogry"
+                  className={`${category === (c as string).toLowerCase() ? 'active' : null
+                    }`}
+
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
         </form>
       </div>
 
