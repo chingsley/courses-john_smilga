@@ -7,21 +7,23 @@ import React from "react";
 const Filters = () => {
   const {
     filters: {
-      text,
-      category,
-      company,
-      color,
-      price,
-      minPrice,
-      maxPrice,
-      shipping
+      text: currentSearchText,
+      category: currentFilterCategory,
+      company: currentFilterCompany,
+      color: currentFilterColor,
+      price: currentFilterPrice,
+      minPrice: currentFilterMinPrice,
+      maxPrice: currentFilterMaxPrice,
+      shipping: currentFilterShipping
     },
     updateFilters,
     allProducts,
     clearFilters
   } = useFiltersContext()!;
 
+  // console.log(allProducts);
   const categories = getUniqueValues(allProducts, 'category');
+  // console.log(categories);
   const companies = getUniqueValues(allProducts, 'company');
   const colors = getUniqueValues(allProducts, 'colors');
 
@@ -38,6 +40,10 @@ const Filters = () => {
     updateFilters('company', e.target.value);
   };
 
+  const filterByColor = (e: React.MouseEvent<HTMLButtonElement>) => {
+    updateFilters('color', (e.target as HTMLButtonElement).dataset.color!);
+  };
+
   return (
     <Wrapper>
       <div className="content">
@@ -47,36 +53,40 @@ const Filters = () => {
             <input
               type="text"
               name="text"
-              value={text}
+              value={currentSearchText}
               placeholder="search"
               onChange={searchByText} className="search-input" />
           </div>
-          {/**filter by cateory */}
+
+          {/**filter by category */}
           <div className="form-control">
             <h5>category</h5>
             <div>
-              {categories.map((c, index) => (
-                <button
-                  key={index}
-                  onClick={filterByCategory}
-                  type="button"
-                  name="cateogry"
-                  className={`${category === (c as string).toLowerCase() ? 'active' : null
-                    }`}
+              {categories.map((c, index) => {
+                return (
+                  <button
+                    key={index}
+                    onClick={filterByCategory}
+                    type="button"
+                    name="cateogry"
+                    className={`${currentFilterCategory === (c as string).toLowerCase() ? 'active' : null
+                      }`}
 
-                >
-                  {c}
-                </button>
-              ))}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
             </div>
           </div>
+
           {/** filiter by company */}
           <div className="form-control">
             <h5>company</h5>
             <select
               name="company"
               id="company"
-              value={company}
+              value={currentFilterCompany}
               onChange={filterByCompany}
               className="company"
             >
@@ -84,6 +94,37 @@ const Filters = () => {
                 <option key={index} value={c as string}>{c}</option>
               ))}
             </select>
+          </div>
+
+          {/** filter by color */}
+          <div className="form-control">
+            <h5>colors</h5>
+            <div className="colors">
+              {colors.map((c, index) => {
+                let classname = '';
+                let textContent = null;
+                if (c === 'all') {
+                  classname = currentFilterColor === 'all' ? 'all-btn active' : 'all-btn';
+                  textContent = 'all';
+                } else {
+                  classname = currentFilterColor === c ? 'color-btn active' : 'color-btn';
+                  textContent = currentFilterColor === c && <FaCheck />;
+                }
+                return (
+                  <button
+                    key={index}
+                    name='color'
+                    onClick={filterByColor}
+                    data-color={c === 'all' ? 'all' : c}
+                    className={classname}
+                    style={c === 'all' ? {} : { background: c as string }}
+                  >
+                    {textContent}
+                  </button>
+                );
+              }
+              )}
+            </div>
           </div>
         </form>
       </div>

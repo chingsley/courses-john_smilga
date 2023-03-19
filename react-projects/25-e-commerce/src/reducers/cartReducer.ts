@@ -63,7 +63,7 @@ const cartReducer = (state: ICartState, action: CartAction) => {
       return { ...state, cart: [] };
     }
     case ActionTypes.COUNT_CART_TOTALS: {
-      console.log(state.cart);
+      // console.log(state.cart);
       const { total_items, total_amount } = state.cart.reduce(
         (total, cartItem) => {
           const { count, price } = cartItem;
