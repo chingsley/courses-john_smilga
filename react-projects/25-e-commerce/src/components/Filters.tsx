@@ -46,6 +46,10 @@ const Filters = () => {
     updateFilters('price', Number(e.target.value));
   };
 
+  const filterByShipping = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateFilters('shipping', e.target.checked);
+  };
+
   return (
     <Wrapper>
       <div className="content">
@@ -142,9 +146,23 @@ const Filters = () => {
               value={currentFilterPrice}
             />
           </div>
+          {/** filter by shipping */}
+          <div className="form-control shipping">
+            <label htmlFor="shipping">free shipping</label>
+            <input
+              type="checkbox"
+              name="shipping"
+              id="shipping"
+              checked={currentFilterShipping}
+              onChange={filterByShipping}
+            />
+          </div>
         </form>
-      </div>
 
+        <button className="clear-btn" type="button" onClick={clearFilters}>
+          clear filters
+        </button>
+      </div>
 
     </Wrapper>
   );
