@@ -12,8 +12,8 @@ const Filters = () => {
       company: currentFilterCompany,
       color: currentFilterColor,
       price: currentFilterPrice,
-      minPrice: currentFilterMinPrice,
-      maxPrice: currentFilterMaxPrice,
+      minPrice,
+      maxPrice,
       shipping: currentFilterShipping
     },
     updateFilters,
@@ -21,9 +21,7 @@ const Filters = () => {
     clearFilters
   } = useFiltersContext()!;
 
-  // console.log(allProducts);
   const categories = getUniqueValues(allProducts, 'category');
-  // console.log(categories);
   const companies = getUniqueValues(allProducts, 'company');
   const colors = getUniqueValues(allProducts, 'colors');
 
@@ -42,6 +40,10 @@ const Filters = () => {
 
   const filterByColor = (e: React.MouseEvent<HTMLButtonElement>) => {
     updateFilters('color', (e.target as HTMLButtonElement).dataset.color!);
+  };
+
+  const filterByPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateFilters('price', Number(e.target.value));
   };
 
   return (
@@ -125,6 +127,20 @@ const Filters = () => {
               }
               )}
             </div>
+          </div>
+
+          {/** filter by price */}
+          <div className="form-control">
+            <h5>price</h5>
+            <p className="price">{formatPrice(currentFilterPrice)}</p>
+            <input
+              type="range"
+              name="price"
+              onChange={filterByPrice}
+              min={minPrice}
+              max={maxPrice}
+              value={currentFilterPrice}
+            />
           </div>
         </form>
       </div>
