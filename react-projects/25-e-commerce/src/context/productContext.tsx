@@ -14,7 +14,7 @@ export const initialState: IProductsState = {
   featuredProducts: [],
   singleProductLoading: false,
   singleProductError: false,
-  singleProduct: {},
+  singleProduct: null,
 };
 
 interface IProductContext extends IProductsState {
