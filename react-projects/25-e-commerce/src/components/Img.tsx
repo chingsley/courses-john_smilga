@@ -5,6 +5,7 @@ interface ImgProps {
   src: string;
   alt: string;
   className?: string;
+  onClick?: () => void;
 }
 const Img: React.FC<ImgProps> = (props) => {
   return <LazyLoadImage {...props} />;

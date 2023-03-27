@@ -1,6 +1,8 @@
+import { IProductImage } from "./products";
+
 export interface ICartItemProductInfo {
   name: string;
-  images: [{ url: string; }];
+  images: IProductImage[];
   price: number;
   stock: number;
 }

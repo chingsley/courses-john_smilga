@@ -35,10 +35,10 @@ export interface IProductsState {
   featuredProducts: IProduct[];
   singleProductLoading: boolean;
   singleProductError: boolean;
-  singleProduct: IProductDetail | {};
+  singleProduct: IProductDetail | null;
 }
 
-interface IProductImage {
+export interface IProductImage {
   id: string;
   width: number;
   height: number;
