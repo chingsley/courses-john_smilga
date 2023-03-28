@@ -6,7 +6,6 @@ const cartReducer = (state: ICartState, action: CartAction) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART: {
       const { id, color, count, product } = action.payload;
-      console.log('2. In cartReducer', { id, color, count, product });
       const itemID = id + color;
 
       const cartItem = state.cart.find((item) => item.id === itemID);
@@ -47,14 +46,16 @@ const cartReducer = (state: ICartState, action: CartAction) => {
         cart: state.cart.map((item) => {
           if (item.id !== id) return item;
           if (direction === CartItemCountToggleDirection.Inc) {
+            console.log(Math.max(item.count + 1, item.product.stock));
             return {
               ...item,
-              count: Math.max(item.count + 1, item.product.stock)
+              count: Math.min(item.count + 1, item.product.stock)
             };
           } else {
+            console.log(Math.min(item.count - 1, 1));
             return {
               ...item,
-              count: Math.min(item.count - 1, 1)
+              count: Math.max(item.count - 1, 1)
             };
           }
         })
@@ -64,13 +65,9 @@ const cartReducer = (state: ICartState, action: CartAction) => {
       return { ...state, cart: [] };
     }
     case ActionTypes.COUNT_CART_TOTALS: {
-      console.log('state.cart: ', state.cart);
       const { total_items, total_amount } = state.cart.reduce(
         (total, cartItem) => {
           const { count, price } = cartItem;
-          console.log({
-            'total.total_items': total.total_items, count
-          });
           total.total_items += count;
           total.total_amount += price * count;
           return total;

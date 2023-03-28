@@ -5,11 +5,19 @@ import { LogoutOptions } from '@auth0/auth0-react';
 import { UseCartContext } from '../context/cartContext';
 import { useProductsContext } from '../context/productContext';
 import { useUserContext } from '../context/userContext';
+import Loading from './Loading';
 
 const CartButtons = () => {
-  const { closeSidebar } = useProductsContext()!;
-  const { total_items, clearCart } = UseCartContext()!;
-  const { loginWithRedirect, currentUser, logout } = useUserContext()!;
+  const productContext = useProductsContext();
+  const cartContext = UseCartContext();
+  const userContext = useUserContext();
+  if (!userContext) return <Loading />;
+  if (!cartContext) return <Loading />;
+  if (!productContext) return <Loading />;
+
+  const { closeSidebar } = productContext;
+  const { total_items, clearCart } = cartContext;
+  const { loginWithRedirect, currentUser, logout } = userContext;
 
   const logoutOptions: Omit<LogoutOptions, 'onRedirect'> = {
     returnTo: window.location.origin,
