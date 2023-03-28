@@ -57,7 +57,7 @@ const AddToCart: React.FC<IAddToCartProps> = ({ product }) => {
           to="/cart"
           onClick={() => addToCart(id, mainColor, qty, cartItem)}
         >
-
+          add to cart
         </Link>
       </div>
     </Wrapper>

@@ -15,7 +15,6 @@ export interface ICartItem {
   name: string,
   image: string,
   price: number,
-  totalStockCount: number,
 }
 
 export interface ICartState {

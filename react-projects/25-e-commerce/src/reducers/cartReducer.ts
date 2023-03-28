@@ -1,4 +1,4 @@
-import { CartItemCountToggleDirection, ICartState } from "../types/carts";
+import { CartItemCountToggleDirection, ICartItem, ICartState } from "../types/carts";
 import { CartAction } from "../actions/cartActions";
 import ActionTypes from "../actions/actionTypes";
 
@@ -6,9 +6,10 @@ const cartReducer = (state: ICartState, action: CartAction) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_CART: {
       const { id, color, count, product } = action.payload;
+      console.log('2. In cartReducer', { id, color, count, product });
       const itemID = id + color;
 
-      const cartItem = state.cart.find((item) => item.id = itemID);
+      const cartItem = state.cart.find((item) => item.id === itemID);
       if (cartItem) {
         return {
           ...state,
@@ -16,19 +17,19 @@ const cartReducer = (state: ICartState, action: CartAction) => {
             if (item.id !== itemID) return item;
             return {
               ...item,
-              count: Math.min(item.totalStockCount, item.count + count)
+              count: Math.min(item.count + count, product.stock)
             };
           })
         };
       } else {
-        const newItem = {
+        const newItem: ICartItem = {
           id: itemID,
           name: product.name,
           color,
           count,
           image: product.images[0].url,
           price: product.price,
-          max: product.stock,
+          product,
         };
         return { ...state, cart: [...state.cart, newItem] } as ICartState;
       }
@@ -48,7 +49,7 @@ const cartReducer = (state: ICartState, action: CartAction) => {
           if (direction === CartItemCountToggleDirection.Inc) {
             return {
               ...item,
-              count: Math.max(item.count + 1, item.totalStockCount)
+              count: Math.max(item.count + 1, item.product.stock)
             };
           } else {
             return {
@@ -63,7 +64,7 @@ const cartReducer = (state: ICartState, action: CartAction) => {
       return { ...state, cart: [] };
     }
     case ActionTypes.COUNT_CART_TOTALS: {
-      // console.log(state.cart);
+      console.log('state.cart: ', state.cart);
       const { total_items, total_amount } = state.cart.reduce(
         (total, cartItem) => {
           const { count, price } = cartItem;

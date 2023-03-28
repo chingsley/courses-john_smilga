@@ -32,10 +32,6 @@ const SingleProductPage = () => {
   if (error) return <Error />;
   if (!product) return <div>debugging...</div>;
 
-  console.log('product = ', product);
-  console.log('loading = ', loading);
-  console.log('error = ', error);
-
   const {
     name,
     price,
