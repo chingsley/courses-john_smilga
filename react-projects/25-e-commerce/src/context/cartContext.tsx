@@ -11,7 +11,7 @@ const getLocalStorage = () => {
   let cart = localStorage.getItem('cart');
   if (!cart) return [];
 
-  return JSON.parse(localStorage.getItem('cart')!);
+  return JSON.parse(cart);
 };
 
 interface ICartContext extends ICartState {
@@ -35,7 +35,7 @@ const initialState: ICartState = {
 
 const CartContext = React.createContext<ICartContext | null>(null);
 
-export const CartProvider = ({ children }: { children: React.ReactNode }) => {
+export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = (
@@ -44,6 +44,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     count: number,
     product: ICartItemProductInfo
   ) => {
+    console.log('1. In cartContext', { id, color, count, product });
     dispatch({
       type: ActionTypes.ADD_TO_CART,
       payload: { id, color, count, product },

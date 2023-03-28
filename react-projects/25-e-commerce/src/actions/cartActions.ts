@@ -3,7 +3,7 @@ import ActionTypes from './actionTypes';
 
 export interface AddToCart {
   type: ActionTypes.ADD_TO_CART;
-  payload: Omit<ICartItem, "name" | "image" | "price" | "totalStockCount">;
+  payload: Omit<ICartItem, "name" | "image" | "price">;
 }
 
 export interface RemoveItem {
