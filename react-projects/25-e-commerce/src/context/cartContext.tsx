@@ -44,7 +44,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
     count: number,
     product: ICartItemProductInfo
   ) => {
-    console.log('1. In cartContext', { id, color, count, product });
     dispatch({
       type: ActionTypes.ADD_TO_CART,
       payload: { id, color, count, product },
