@@ -6,14 +6,8 @@ import { CartItemCountToggleDirection, ICartItem } from '../types/carts';
 import { formatPrice } from '../utils/helpers';
 import AmountButtons from './AmountButtons';
 import Img from './Img';
-interface ICartItemProps {
-  id: ICartItem["id"];
-  name: ICartItem["name"];
-  image: ICartItem["image"];
-  color: ICartItem["color"];
-  price: ICartItem["price"];
-  count: ICartItem["count"];
-}
+
+interface ICartItemProps extends ICartItem { };
 const CartItem: React.FC<ICartItemProps> = (props) => {
   const { id, image, name, color, price, count } = props;
   const { removeItem, toggleCount } = UseCartContext()!;
