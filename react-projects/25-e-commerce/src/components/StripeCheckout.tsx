@@ -37,7 +37,7 @@ const CheckoutForm = () => {
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
-        'http://localhost:8888/.netlify/functions/create-payment-intent',
+        '/.netlify/functions/create-payment-intent',
         JSON.stringify({ cart, shipping_fee, total_amount })
       );
       setClientSecret(data.clientSecret);
@@ -45,6 +45,12 @@ const CheckoutForm = () => {
       console.log(error);
       if (error instanceof AxiosError) {
         console.log(error.response);
+        setError('Something went wrong. Refresh your browser and try again. If this error continues please contact support.');
+        // setError(
+        //   error.response?.data?.error ||
+        //   error.response?.statusText ||
+        //   error.message
+        // );
       }
     }
   };
@@ -191,8 +197,8 @@ const Wrapper = styled.section`
   .hidden {
     display: none;
   }
-  #card-error {
-    color: rgb(105, 115, 134);
+  .card-error {
+    color: rgb(235 28 38 / 65%);
     font-size: 16px;
     line-height: 20px;
     margin-top: 12px;
