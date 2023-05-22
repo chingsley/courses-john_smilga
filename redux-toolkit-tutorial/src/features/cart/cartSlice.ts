@@ -4,14 +4,14 @@ import { RootState, AppThunk } from '../../app/store';
 
 export interface CartState {
   cartItems: string[];
-  amount: number;
+  itemsCount: number;
   total: number;
   isLoading: boolean;
 }
 
 const initialState: CartState = {
   cartItems: [],
-  amount: 0,
+  itemsCount: 0,
   total: 0,
   isLoading: true,
 };
@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
     },
     decrement: (state) => {
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
+    incrementBynumberOfItems: (state, action: PayloadAction<number>) => {
     },
   },
 });
