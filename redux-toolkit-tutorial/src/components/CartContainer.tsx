@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
+import CartItem from './CartItem';
 
 const CartContainer = () => {
   const { cartItems, total, itemsCount } = useSelector((store: RootState) => store.cart);
@@ -23,8 +24,8 @@ const CartContainer = () => {
       </header>
       <div>
         {cartItems.map((item) => {
-          // return <CartItem key={item.id} {...item} />;
-          return <div>{item.title}</div>;
+          return <CartItem key={item.id} {...item} />;
+          // return <div>{item.title}</div>;
         })}
       </div>
       <footer>
