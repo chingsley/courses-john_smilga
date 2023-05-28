@@ -10,6 +10,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, img, title, price, quantity }) 
   return (
     <article className='cart-item'>
       <img src={img} alt={title} />
+
       <div>
         <h4>{title}</h4>
         <h4 className='item-price'>${price}</h4>
@@ -22,6 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, img, title, price, quantity }) 
           remove
         </button>
       </div>
+
       <div>
         <button
           className='amount-btn'
@@ -35,16 +37,13 @@ const CartItem: React.FC<CartItemProps> = ({ id, img, title, price, quantity }) 
         <button
           className='amount-btn'
           onClick={() => {
-            if (quantity === 1) {
-              dispatch(removeItem(id));
-              return;
-            }
             dispatch(decrease({ id }));
           }}
         >
           <ChevronDown />
         </button>
       </div>
+
     </article>
   );
 };
