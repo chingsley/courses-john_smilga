@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createSlice } from '@reduxjs/toolkit';
 import cartItems, { ICartItem } from '../../data/cartItems';
 
 
@@ -33,11 +32,17 @@ export const cartSlice = createSlice({
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       if (!cartItem) return;
       cartItem.quantity = cartItem.quantity + 1;
+      state.total = state.total + Number(cartItem.price);
     },
     decrease: (state, { payload }) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       if (!cartItem) return;
-      cartItem.quantity = cartItem.quantity - 1;
+      if (cartItem.quantity - 1 === 0) {
+        state.cartItems = state.cartItems.filter((item) => item.id !== payload.id);
+      } else {
+        cartItem.quantity = cartItem.quantity - 1;
+      }
+      state.total = state.total - Number(cartItem.price);
     },
     calculateTotals: (state) => {
       let quantity = 0;
