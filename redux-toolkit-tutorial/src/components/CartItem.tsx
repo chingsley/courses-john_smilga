@@ -3,10 +3,11 @@ import { removeItem, increase, decrease } from '../features/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 import { ICartItem } from '../data/cartItems';
 import React from 'react';
+import { AppDispatch } from '../app/store';
 
 type CartItemProps = ICartItem;
 const CartItem: React.FC<CartItemProps> = ({ id, img, title, price, quantity }) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   return (
     <article className='cart-item'>
       <img src={img} alt={title} />

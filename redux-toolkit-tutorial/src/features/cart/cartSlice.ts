@@ -1,6 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 import cartItems, { ICartItem } from '../../data/cartItems';
 
+const url = 'https://course-api.com/react-useReducer-cart-project';
 
 export interface ICartState {
   cartItems: ICartItem[];
@@ -16,6 +18,23 @@ const initialState: ICartState = {
   isLoading: true,
 };
 
+export const getCartItems = createAsyncThunk(
+  'cart/getCartItems',
+  async (name: string, thunkAPI) => {
+    try {
+      console.log(name);
+      // console.log(thunkAPI);
+      // console.log(thunkAPI.getState());
+      // thunkAPI.dispatch(openModal());
+      const resp = await axios(url);
+      console.log(resp.data);
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(`something went wrong, ${error}`);
+    }
+  }
+);
+
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -24,17 +43,16 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.cartItems = [];
     },
-    removeItem: (state, action) => {
+    removeItem: (state, action: PayloadAction<string>) => {
       const itemId = action.payload;
       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
     },
-    increase: (state, { payload }) => {
+    increase: (state, { payload }: PayloadAction<{ id: string; }>) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       if (!cartItem) return;
       cartItem.quantity = cartItem.quantity + 1;
-      state.total = state.total + Number(cartItem.price);
     },
-    decrease: (state, { payload }) => {
+    decrease: (state, { payload }: PayloadAction<{ id: string; }>) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       if (!cartItem) return;
       if (cartItem.quantity - 1 === 0) {
@@ -42,7 +60,6 @@ export const cartSlice = createSlice({
       } else {
         cartItem.quantity = cartItem.quantity - 1;
       }
-      state.total = state.total - Number(cartItem.price);
     },
     calculateTotals: (state) => {
       let quantity = 0;
