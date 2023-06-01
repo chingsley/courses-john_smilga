@@ -10,10 +10,11 @@ import {
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
+import { AppDispatch } from '../../app/store';
 
 export function Counter() {
   const count = useAppSelector(selectCount);
-  const dispatch = useAppDispatch();
+  const dispatch: AppDispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;

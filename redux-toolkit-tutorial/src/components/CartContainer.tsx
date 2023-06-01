@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../app/store';
+import { AppDispatch, RootState } from '../app/store';
 import CartItem from './CartItem';
 import { openModal } from '../features/modal/modalSlice';
 
 const CartContainer = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { cartItems, total, itemsCount } = useSelector((store: RootState) => store.cart);
 
   if (itemsCount < 1) {
