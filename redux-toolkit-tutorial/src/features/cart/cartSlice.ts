@@ -9,6 +9,7 @@ export interface ICartState {
   itemsCount: number;
   total: number;
   isLoading: boolean;
+  error: string;
 }
 
 const initialState: ICartState = {
@@ -16,6 +17,7 @@ const initialState: ICartState = {
   itemsCount: cartItems.length,
   total: cartItems.reduce((acc: number, item: ICartItem) => acc + Number(item.price), 0),
   isLoading: true,
+  error: ""
 };
 
 export const getCartItems = createAsyncThunk(
@@ -40,6 +42,9 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    clearError: (state) => {
+      state.error = "";
+    },
     clearCart: (state) => {
       state.cartItems = [];
     },
@@ -72,9 +77,29 @@ export const cartSlice = createSlice({
       state.total = total;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        console.log("fufilled: ", action);
+        state.isLoading = false;
+        state.cartItems = action.payload.map((item: any) => ({
+          ...item,
+          quantity: item.amount
+        }));
+        // state.error = "testing error feature";
+      })
+      .addCase(getCartItems.rejected, (state, action) => {
+        console.log(action);
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
+  },
 });
 
 
-export const { clearCart, removeItem, increase, decrease, calculateTotals } =
+export const { clearError, clearCart, removeItem, increase, decrease, calculateTotals } =
   cartSlice.actions;
 export default cartSlice.reducer;

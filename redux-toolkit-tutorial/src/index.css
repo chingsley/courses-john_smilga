@@ -307,3 +307,14 @@ hr {
   display: flex;
   justify-content: space-around;
 }
+
+.error-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  background: red;
+  color: white;
+  text-align: center;
+  z-index: 10000;
+}
