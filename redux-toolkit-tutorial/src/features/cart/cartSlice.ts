@@ -32,7 +32,7 @@ export const getCartItems = createAsyncThunk(
       console.log(resp.data);
       return resp.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(`something went wrong, ${error}`);
+      return thunkAPI.rejectWithValue(`something went wrong, ${error}`); // sends error message as 'action.payload' to the secion: " .addCase(getCartItems.rejected, (state, action) "
     }
   }
 );
