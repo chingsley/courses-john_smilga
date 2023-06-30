@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { getAllJobsThunk, showStatsThunk } from './allJobsThunk';
+import { IJobListState, IJobFilterState } from '../../types/jobs';
 
 const initialFiltersState: IJobFilterState = {
   search: '',
@@ -10,7 +11,7 @@ const initialFiltersState: IJobFilterState = {
   sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 };
 
-const initialState: IJobList = {
+const initialState: IJobListState = {
   isLoading: true,
   jobs: [],
   totalJobs: 0,
@@ -35,7 +36,7 @@ const allJobsSlice = createSlice({
     hideLoading: (state) => {
       state.isLoading = false;
     },
-    handleFilterChange: (state: IJobList, { payload: { name, value } }: { payload: { name: string, value: any; }; }) => {
+    handleFilterChange: (state: IJobListState, { payload: { name, value } }: { payload: { name: string, value: any; }; }) => {
       state.page = 1;
       state.filterState[name as keyof typeof state.filterState] = value;
     },
