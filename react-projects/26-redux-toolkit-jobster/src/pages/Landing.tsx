@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import main from '../assets/images/main2.svg';
+import main from '../assets/images/main3.svg';
 import { LandingPageWrapper } from '../assets/wrappers';
 import { Logo } from '../components';
 

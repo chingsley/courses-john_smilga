@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { Landing, ProtectedRoute } from './pages';
+import { Landing, ProtectedRoute, Register } from './pages';
 import { SharedLayout } from './pages/dashboard';
 
 interface IAppProps {
@@ -20,6 +20,7 @@ const App: React.FC<IAppProps> = () => {
           }
         />
         <Route path='landing' element={<Landing />} />
+        <Route path='register' element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
