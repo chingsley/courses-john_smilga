@@ -1,9 +1,15 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
+import userSlice from '../features/user/userSlice';
+import jobSlice from '../features/job/jobSlice';
+import allJobsSlice from '../features/allJobs/allJobsSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    user: userSlice,
+    job: jobSlice,
+    allJobs: allJobsSlice
   },
 });
 
