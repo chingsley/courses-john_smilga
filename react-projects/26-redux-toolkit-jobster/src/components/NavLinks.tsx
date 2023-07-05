@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Icon from './Icon';
 
 interface INavLinksProps {
-  toggleSidebar: () => void;
+  toggleSidebar?: () => void;
 }
 
 const NavLinks: React.FC<INavLinksProps> = ({ toggleSidebar }) => {
