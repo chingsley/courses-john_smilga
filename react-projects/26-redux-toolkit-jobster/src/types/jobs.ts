@@ -4,7 +4,7 @@ export interface IJobListState {
   totalJobs: number,
   numOfPages: number,
   page: number,
-  stats: IDefaultJobStats | {};
+  stats: IDefaultJobStats;
   monthlyApplications: IMonthlyApplicaiton[],
   filterState: IJobFilterState,
 };

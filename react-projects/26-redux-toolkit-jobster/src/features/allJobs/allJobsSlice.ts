@@ -17,7 +17,11 @@ const initialState: IJobListState = {
   totalJobs: 0,
   numOfPages: 1,
   page: 1,
-  stats: {},
+  stats: {
+    pending: 0,
+    interview: 0,
+    declined: 0,
+  },
   monthlyApplications: [],
   filterState: initialFiltersState,
 };
