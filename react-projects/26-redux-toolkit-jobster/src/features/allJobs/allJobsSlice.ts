@@ -12,7 +12,7 @@ const initialFiltersState: IJobFilterState = {
 };
 
 const initialState: IJobListState = {
-  isLoading: true,
+  isLoading: false,
   jobs: [],
   totalJobs: 0,
   numOfPages: 1,
@@ -40,6 +40,10 @@ const allJobsSlice = createSlice({
     hideLoading: (state) => {
       state.isLoading = false;
     },
+    // handleChange: (state, { payload: { name, value } }) => {
+    //   state.page = 1;
+    //   state[name as keyof typeof state] = value as never;
+    // },
     handleFilterChange: (state: IJobListState, { payload: { name, value } }: { payload: { name: string, value: any; }; }) => {
       state.page = 1;
       state.filterState[name as keyof typeof state.filterState] = value;
@@ -85,6 +89,7 @@ const allJobsSlice = createSlice({
 export const {
   showLoading,
   hideLoading,
+  // handleChange,
   handleFilterChange,
   clearFilters,
   changePage,
