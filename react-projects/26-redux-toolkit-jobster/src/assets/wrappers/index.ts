@@ -6,3 +6,4 @@ export { default as BigSidebarWrapper } from './BigSidebar';
 export { default as NavbarWrapper } from './Navbar';
 export { default as StatsContainerWrapper } from './StatsContainer';
 export { default as StatItemWrapper } from './StatItem';
+export { default as ChartsContainerWrapper } from './ChartsContainer';
