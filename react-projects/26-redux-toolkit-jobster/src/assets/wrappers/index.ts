@@ -8,3 +8,6 @@ export { default as StatsContainerWrapper } from './StatsContainer';
 export { default as StatItemWrapper } from './StatItem';
 export { default as ChartsContainerWrapper } from './ChartsContainer';
 export { default as SearchContainerWrapper } from './SearchContainer';
+export { default as JobsContainerWrapper } from './JobsContainer';
+export { default as JobWrapper } from './Job';
+export { default as JobInfoWrapper } from './JobInfo';
