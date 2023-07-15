@@ -11,3 +11,4 @@ export { default as SearchContainerWrapper } from './SearchContainer';
 export { default as JobsContainerWrapper } from './JobsContainer';
 export { default as JobWrapper } from './Job';
 export { default as JobInfoWrapper } from './JobInfo';
+export { default as PageBtnContainerWrapper } from './PageBtnContainer';
