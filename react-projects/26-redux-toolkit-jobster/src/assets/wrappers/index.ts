@@ -12,3 +12,4 @@ export { default as JobsContainerWrapper } from './JobsContainer';
 export { default as JobWrapper } from './Job';
 export { default as JobInfoWrapper } from './JobInfo';
 export { default as PageBtnContainerWrapper } from './PageBtnContainer';
+export { default as DashboardFormPageWrapper } from './DashboardFormPage';
