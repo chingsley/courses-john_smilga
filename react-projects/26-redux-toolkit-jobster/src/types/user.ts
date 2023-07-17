@@ -3,5 +3,6 @@ export interface IUser {
   password: string;
   token?: string;
   name?: string;
+  lastName?: string;
   location?: string;
 }
