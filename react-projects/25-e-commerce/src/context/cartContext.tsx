@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useReducer } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import {
   ICartState,
   ICartItemProductInfo,
@@ -26,16 +27,20 @@ interface ICartContext extends ICartState {
   clearCart: () => void;
 }
 
-const initialState: ICartState = {
-  cart: getLocalStorage(),
-  total_items: 0,
-  total_amount: 0,
-  shipping_fee: 534,
-};
+
 
 const CartContext = React.createContext<ICartContext | null>(null);
 
 export const CartProvider = ({ children }: { children: React.ReactNode; }) => {
+  const { user } = useAuth0();
+
+  const initialState: ICartState = {
+    cart: user ? getLocalStorage() : [],
+    total_items: 0,
+    total_amount: 0,
+    shipping_fee: 534,
+  };
+
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = (

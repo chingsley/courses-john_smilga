@@ -30,7 +30,7 @@ function App() {
       <nav>
         <div className='nav-center'>
           <button className='btn' onClick={toggleTheme}>
-            toggle
+            {theme === 'light-theme' ? 'go dark' : 'go light'}
           </button>
         </div>
       </nav>
