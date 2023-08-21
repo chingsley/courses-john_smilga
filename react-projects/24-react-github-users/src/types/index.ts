@@ -1,0 +1,1 @@
+export type AuthError = Error | { error: string; error_description?: string; } | ProgressEvent;

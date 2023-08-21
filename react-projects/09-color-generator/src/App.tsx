@@ -13,11 +13,11 @@ function App() {
     try {
       const colors = new Values(color).all(10);
       setList(colors);
-    } catch(error) {
+    } catch (error) {
       setError(true);
       console.log(error);
     }
-  }
+  };
 
   return (
     <>
@@ -28,7 +28,7 @@ function App() {
             type="text"
             value={color}
             onChange={e => setColor(e.target.value)}
-            placeholder='#f15025'
+            placeholder='#f15035'
             className={`${error ? 'error' : null}`}
           />
           <button className="btn" type='submit'>
@@ -45,11 +45,11 @@ function App() {
               index={index}
               hexColor={color.hex}
             />
-          )
+          );
         })}
       </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -12,17 +12,18 @@ const Modal = () => {
       correctAnswer: questions[questionIndex].correct_answer,
     };
   });
+
+  const finalScore = ((score / questions.length) * 100);
   console.log('userAns: ', userAns);
   return (
     <div
-      className={`${
-        isResultModalOpen ? 'modal-container isOpen' : 'modal-container'
-      }`}
+      className={`${isResultModalOpen ? 'modal-container isOpen' : 'modal-container'
+        }`}
     >
       <div className='modal-content'>
-        <h2>congrats!</h2>
+        {finalScore > 50 && <h2>congrats!</h2>}
         <p>
-          You answered {((score / questions.length) * 100).toFixed(0)}% of
+          You answered {finalScore.toFixed(0)}% of
           questions correctly
         </p>
         <UserAnswerList userAnswers={userAns} />
